@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { JogoContext } from '../context/JogoContext';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
@@ -19,16 +20,22 @@ class Container extends Component {
                                     <Form.Row inline>
                                         <Form.Group as={Col}>
                                             <Form.Label>Pontos</Form.Label>
-                                            <Form.Control type="text" placeholder="informe o numero de pontos" />
+                                            <Form.Control type="text" name="ponto" placeholder="informe o numero de pontos" />
                                         </Form.Group>
                                         <br/>
 
                                         <Form.Group as={Col}>
                                             <Form.Label>Lançamentos</Form.Label>
-                                            <Form.Control type="text" placeholder="Informe o numero de lançamento" />
+                                            <Form.Control type="text" name="lancamento" placeholder="Informe o numero de lançamento" />
                                         </Form.Group>
                                     </Form.Row>
-                                    <Button variant="primary" type="submit">Jogar</Button>
+                                    <JogoContext.Consumer>
+                                    {(context) => (
+                                         <Button variant="outline-primary" block onClick={() => context.jogar(this.props.ponto, this.props.lancameto)}>Jogar</Button>
+                   )}
+                                       
+                                    </JogoContext.Consumer>
+                                    
                                 </Form>
                             
                         </Row>
